@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--报表模板的id一定要和报表动作的name一致-->
+    <template id="customize_log.report_daily_work">
+        <t t-call="web.html_container">
+            <!--遍历这个日志模型的对象,通过doc.字段,可以访问它的所有字段-->
+            <t t-foreach="docs" t-as="doc">
+                <!--调用模块,在报表上添加默认的页眉和页脚-->
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <!--doc.name获取的是res.users对象.name获得的是字段的值-->
+                        <h3 class="text-center">【<span t-esc="doc.time"/>】日工作日志【<span t-esc="doc.name.employee_id.department_id.name"/>】【<span t-esc="doc.name.name"/>】</h3>
+                        <div style="padding: 20px;">
+                        <!--获取的是当前用户的任务对象,并判断是否存在-->
+                        <t t-if="doc.task">
+                            <!--若存在,循环每一个对象, 每一个i都是一个任务对象-->
+                            <t t-foreach="doc.task" t-as="i">
+                                <div class="row mt32 mb32" id="information">
+                                    <div class="col-xs-3">
+                                        <strong style="color:red">开始时间:</strong>
+                                        <p t-field="i.start_date"/>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <strong style="color:red">结束时间:</strong>
+                                        <p t-field="i.end_date"/>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <strong style="color:red">持续时间:</strong>
+                                        <p t-field="i.duration"/>
+                                    </div>
+
+                                    <div class="col-xs-3">
+                                        <strong style="color:red">任务类型:</strong>
+                                        <p t-field="i.content_kind"/>
+                                    </div>
+
+                                    <div class="col-xs-3">
+                                        <strong>任务内容:</strong>
+                                        <p t-field="i.content"/>
+                                    </div>
+                                </div>
+                                <p>
+                                    <strong>图文描述:</strong>
+                                    <span t-field="i.image"/>
+                                </p>
+                                <!--添加一个分割虚线-->
+
+                                <div class="o_stock_reports_table" style="border-bottom: 1px dashed blue;line-height: 20px;padding-bottom: 20px;" >
+
+                                    <!--判断many端是否存在记录-->
+                                    <t t-if="i.pause_time">
+                                        <!--这个class='table table-condensed' 会在表中产生一条虚线-->
+                                        <table width='100%'>
+                                            <thead>
+                                                <tr class="o_report_header">
+                                                    <!--表格的标头-->
+                                                    <th class="o_report_line_header">暂停开始时间</th>
+                                                    <th class="o_report_line_header">暂停结束时间</th>
+                                                    <th class="o_report_line_header">暂停类型</th>
+                                                    <th class="o_report_line_header">暂停原因</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!--如果存在, 获取并循环每一个对象暂停对象i,从而得到每一个字段-->
+                                                <t t-foreach="i.pause_time" t-as="r">
+                                                    <tr>
+                                                        <td>
+                                                            <p t-field="r.pause_start"/>
+                                                        </td>
+                                                        <td>
+                                                            <p t-field="r.pause_end"/>
+                                                        </td>
+                                                        <td>
+                                                            <p t-field="r.pause_kind"/>
+                                                        </td>
+                                                        <td>
+                                                            <p t-field="r.pause_reason"/>
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                    </t>
+                                </div>
+
+
+                            </t>
+                        </t>
+                        </div>
+                    </div>
+
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

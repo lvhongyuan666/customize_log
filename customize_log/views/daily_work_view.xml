@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="print_daily_work_view_form" model="ir.ui.view">
+		<field name="name">日志</field>
+		<field name="model">daily_work</field>
+		<field name="priority" eval="16"/>
+		<field name="arch" type="xml">
+			<!--用户在表单中没有编辑和保存的权限-->
+			<form edit='false' create = 'false'>
+				<sheet>
+					<group>
+						<field name="name"/>
+						<field name="time"/>
+						<field name="task"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="print_daily_work_view_tree" model="ir.ui.view">
+		<field name="name">日志</field>
+		<field name="model">daily_work</field>
+		<field name="priority" eval="16"/>
+		<field name="arch" type="xml">
+			<!--用户在列表中没有编辑和保存的权限-->
+			<tree edit='false' create = 'false'>
+				<field name="name"/>
+			</tree>
+		</field>
+	</record>
+
+    <record id="daily_work_print_action" model="ir.actions.act_window">
+		<field name="name">打印日志</field>
+		<field name="res_model">daily_work</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form</field>
+
+	</record>
+
+	<menuitem
+		id="daily_work_action"
+		name="打印日志"
+		parent="customize_log_task_menu_root"
+		action="daily_work_print_action"
+		sequence="10"
+	/>
+</odoo>

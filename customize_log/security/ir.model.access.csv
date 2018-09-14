@@ -1,0 +1,8 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+task_user,员工,model_customize_log_task,base.group_user,1,1,1,0
+task_manager,经理,model_customize_log_task,hr.group_hr_manager,1,1,1,1
+task_user_pause,员工,model_customize_log_pause,base.group_user,1,1,1,0
+task_manager_pause,经理,model_customize_log_pause,hr.group_hr_manager,1,1,1,1
+daily_work_user,员工,model_daily_work,base.group_user,1,1,1,0
+daily_work_hruser,主管,model_daily_work,hr.group_hr_user,1,1,1,1
+daily_users,员工,model_res_users,base.group_user,1,1,1,1

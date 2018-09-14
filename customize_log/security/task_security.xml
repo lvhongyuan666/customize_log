@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="customize_log_officer_rule" model="ir.rule">
+        <field name="name">普通用户只能看自己创建的任务, 领导分配的任务, 可领取的任务</field>
+        <field name="model_id" ref="model_customize_log_task"/>
+        <!--user表示当前登陆的用户对象-->
+        <field name="domain_force">['|', '|', '|',
+            ('executor','=',user.name),
+            ('create_uid','=',user.id),
+            '&amp;', ('receive','=',True), ('task_department', '=', user.employee_id.department_id.name),
+            '&amp;', ('receive','=',True), ('task_level', '=', 'company')]
+        </field>
+        <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+        <field name="global" eval="False"/>
+    </record>
+
+    <record id="customize_log_user_rule" model="ir.rule">
+        <field name="name">主管可以查看本部门的任务</field>
+        <field name="model_id" ref="model_customize_log_task"/>
+        <field name="domain_force">[('task_department','=', user.employee_id.department_id.name)]</field>
+        <field name="groups" eval="[(4,ref('hr.group_hr_user'))]"/>
+        <field name="global" eval="False"/>
+    </record>
+
+    <record id="customize_log_manager_rule" model="ir.rule">
+        <field name="name">管理员可以查看所有任务</field>
+        <field name="model_id" ref="model_customize_log_task"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4,ref('hr.group_hr_manager'))]"/>
+        <field name="global" eval="False"/>
+    </record>
+
+     <record id="customize_log_user_create_daily_work_rule" model="ir.rule">
+        <field name="name">员工只可以查看自己的个人信息,同理,只能创建自己的日志</field>
+        <field name="model_id" ref="model_res_users"/>
+        <field name="domain_force">[('id','=',user.id)]</field>
+        <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+        <field name="global" eval="False"/>
+    </record>
+
+    <record id="customize_log_officer_look_information_rule" model="ir.rule">
+        <field name="name">员工只可以查看自己的个人信息</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="domain_force">[('name','=',user.name)]</field>
+        <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+        <field name="global" eval="False"/>
+    </record>
+
+     <record id="customize_log_manager_look_information_rule" model="ir.rule">
+        <field name="name">管理员(经理)可以查看所有的员工信息</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4,ref('hr.group_hr_manager'))]"/>
+        <field name="global" eval="False"/>
+    </record>
+
+    <record id="customize_log_user_generatedaily_work_rule" model="ir.rule">
+        <field name="name">主管可以生成本部门员工的日志</field>
+        <field name="model_id" ref="model_res_users"/>
+        <field name="domain_force">[('employee_id.department_id.name','=',user.employee_id.department_id.name)]</field>
+        <field name="groups" eval="[(4,ref('hr.group_hr_user'))]"/>
+        <field name="global" eval="False"/>
+    </record>
+
+    <record id="customize_log_user_look_daily_work_rule" model="ir.rule">
+        <field name="name">员工可以查看自己生成的日志</field>
+        <field name="model_id" ref="model_daily_work"/>
+        <field name="domain_force">[('create_uid','=',user.id)]</field>
+        <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+        <field name="global" eval="False"/>
+    </record>
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="pause_view_form" model="ir.ui.view">
+    	<field name="name">暂停原因</field>
+    	<field name="model">customize_log.pause_reason_wizard</field>
+    	<field name="priority" eval="16"/>
+    	<field name="arch" type="xml">
+    		<form string="暂停原因">
+                    <group>
+                        <field name="pause_kind"/>
+                        <field name="pause_reason"/>
+                    </group>
+                    <footer>
+                        <button string="确定" name="generate_pause_record"  type="object" class="oe_highlight"/>
+                        <!--class="btn-default" special="cancel" 这个属性很特殊,去掉它,就可以给取消按钮添加自定义动作-->
+                        <button string="取消" name="state_action" type="object"/>
+                    </footer>
+    		</form>
+    	</field>
+    </record>
+
+</odoo>

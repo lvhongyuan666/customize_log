@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="_view_tree" model="ir.ui.view">
+    	<field name="name">暂停列表</field>
+    	<field name="model">customize_log.pause</field>
+    	<field name="priority" eval="16"/>
+    	<field name="arch" type="xml">
+    		<tree string="暂停时间列表">
+                <field name="pause_start"/>
+                <field name="pause_end"/>
+				<field name="pause_kind"/>
+				<field name="pause_reason"/>
+    		</tree>
+    	</field>
+    </record>
+
+    <record id="_view_form" model="ir.ui.view">
+    	<field name="name">暂停表单</field>
+    	<field name="model">customize_log.pause</field>
+    	<field name="priority" eval="16"/>
+    	<field name="arch" type="xml">
+    		<form string="">
+                <sheet>
+                    <group>
+                        <field name="pause_start"/>
+                        <field name="pause_end"/>
+                        <field name="pause_kind"/>
+                        <field name="pause_reason"/>
+                    </group>
+                </sheet>
+    		</form>
+    	</field>
+    </record>
+
+    <record id="_action" model="ir.actions.act_window">
+    	<field name="name">暂停动作</field>
+    	<field name="res_model">customize_log.pause</field>
+    	<field name="view_type">form</field>
+    	<field name="view_mode">tree,form</field>
+    	<field name="target">new</field><!--current-->
+    </record>
+
+</odoo>

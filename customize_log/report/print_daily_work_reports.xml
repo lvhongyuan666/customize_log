@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <report
+        id="daily_work_report"
+        model="daily_work"
+        string="生成日志"
+        name="customize_log.report_daily_work"
+        file="customize_log.report_daily_work"
+        report_type="qweb-pdf"
+    />
+
+</odoo>
