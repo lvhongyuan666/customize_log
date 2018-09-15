@@ -25,15 +25,17 @@
                                         <p t-field="i.end_date"/>
                                     </div>
                                     <div class="col-xs-3">
-                                        <strong style="color:red">持续时间:</strong>
+                                        <strong style="color:red">预计持续时间:</strong>
                                         <p t-field="i.duration"/>
                                     </div>
-
+                                    <!--<div class="col-xs-3">-->
+                                        <!--<strong style="color:red">实际用时:</strong>-->
+                                        <!--<p t-field=" 'i.end_date' '-' 'i.start_date' "/>-->
+                                    <!--</div>-->
                                     <div class="col-xs-3">
                                         <strong style="color:red">任务类型:</strong>
                                         <p t-field="i.content_kind"/>
                                     </div>
-
                                     <div class="col-xs-3">
                                         <strong>任务内容:</strong>
                                         <p t-field="i.content"/>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!--报表动作用report标签声明-->
      <report
         id="daily_work_report"
         model="daily_work"

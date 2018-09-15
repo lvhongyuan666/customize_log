@@ -23,7 +23,6 @@ class DailyWorkWizard(models.TransientModel):
             'name': self.name_id.id,
             'time': fields.Date.today(),
             'task': [(4, r.id) for r in res_data],
-            #
         })
         return True
 

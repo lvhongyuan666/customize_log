@@ -13,7 +13,6 @@
 				</group>
 				<footer>
 					<button string="生成任务" name='generate_daily_work' type="object" class="oe_highlight"/>
-
 					<button string="取消" class="btn-default" special="cancel"/>
 				</footer>
 			</form>
