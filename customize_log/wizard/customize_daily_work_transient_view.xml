@@ -1,0 +1,38 @@
+<odoo>
+
+	<record id="customize_wizard_daily_work_view_form" model="ir.ui.view">
+		<field name="name">自定义时间生成日志</field>
+		<field name="model">customize_log.customize_daily_work</field>
+		<field name="priority" eval="1"/>
+		<field name="arch" type="xml">
+			<form string="自定义时间生成日志">
+				<group>
+					<field name="name_id"/>
+					<field name="start_time"/>
+					<field name="end_time"/>
+				</group>
+				<footer>
+					<button string="生成日志" name='customize_generate_daily_work' type="object" class="oe_highlight"/>
+					<button string="取消" class="btn-default" special="cancel"/>
+				</footer>
+			</form>
+		</field>
+	</record>
+
+	<act_window id="customize_daily_wizard_action"
+				name="自定义时间生成日志"
+				src_model="res.users"
+				res_model="customize_log.customize_daily_work"
+				view_mode="form"
+				target="new"
+				key2="client_action_multi"/>
+
+	<menuitem
+			id="customize_wizard_daily_work_menu_action"
+			name="生成日志"
+			parent="otherday_daily_work_menu_action"
+			action="customize_daily_wizard_action"
+			sequence="10"
+	/>
+
+</odoo>

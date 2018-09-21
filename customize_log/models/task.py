@@ -44,6 +44,7 @@ class Task(models.Model):
 
     # 添加一个dailywork(日志模型)相关字段
     daily_work = fields.Many2many('daily_work', string='日志')
+    # customize_daily_work = fields.Many2many('')
 
     @api.multi
     def action_active_task(self):

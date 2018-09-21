@@ -5,4 +5,8 @@ task_user_pause,员工,model_customize_log_pause,base.group_user,1,1,1,0
 task_manager_pause,经理,model_customize_log_pause,hr.group_hr_manager,1,1,1,1
 daily_work_user,员工,model_daily_work,base.group_user,1,1,1,0
 daily_work_hruser,主管,model_daily_work,hr.group_hr_user,1,1,1,1
-daily_users,员工,model_res_users,base.group_user,1,1,1,1
+daily_users,员工,model_res_users,base.group_user,1,1,0,0
+user,经理,model_res_users,hr.group_hr_manager,1,1,1,1
+customize_daily_work_user,员工,model_customize_daily_work,base.group_user,1,1,1,0
+customize_daily_work_huser,主管,model_customize_daily_work,hr.group_hr_user,1,1,1,1
+

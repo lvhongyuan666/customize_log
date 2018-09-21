@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!--报表动作用report标签声明-->
-     <report
-        id="daily_work_report"
-        model="daily_work"
-        string="生成日志"
-        name="customize_log.report_daily_work"
-        file="customize_log.report_daily_work"
-        report_type="qweb-pdf"
+    <report
+            id="daily_work_report"
+            model="daily_work"
+            string="打印日志"
+            name="customize_log.report_daily_work"
+            file="customize_log.report_daily_work"
+            report_type="qweb-pdf"
+    />
+
+    <report
+            id="customize_daily_work_report"
+            model="customize_daily_work"
+            string="打印日志"
+            name="customize_log.report_customize_daily_work"
+            file="customize_log.report_customize_daily_work"
+            report_type="qweb-pdf"
     />
 
 </odoo>

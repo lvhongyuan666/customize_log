@@ -69,4 +69,12 @@
         <field name="groups" eval="[(4,ref('base.group_user'))]"/>
         <field name="global" eval="False"/>
     </record>
+
+     <record id="customize_log_user_look_customize_daily_work_rule" model="ir.rule">
+        <field name="name">员工可以查看自己自定义生成的日志</field>
+        <field name="model_id" ref="model_customize_daily_work"/>
+        <field name="domain_force">[('create_uid','=',user.id)]</field>
+        <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+        <field name="global" eval="False"/>
+    </record>
 </odoo>

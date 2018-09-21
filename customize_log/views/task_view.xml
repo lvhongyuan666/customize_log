@@ -37,16 +37,16 @@
 						<group>
 							<field name="content" attrs="{'readonly':[('state', 'in', ('dealt','process','pause','done','cancel'))]}"/>
 							<field name="content_kind" attrs="{'readonly':[('state', 'in', ('dealt','process','pause','done','cancel'))]}"/>
-							<field name="user_id"/>
+							<field name="user_id" readonly="1"/>
 							<field name="task_level" />
                             <!--状态为待办理,进行中, 已完成的时候,内容,开始时间,持续时间为只读-->
 							<field name="start_date" attrs="{'invisible':[('task_kind','=', 'view')],
 							'readonly':[('state', 'in', ('dealt','process','pause','done','cancel'))]}"/>
 							<field name="duration" attrs="{'invisible':[('task_kind','=', 'view')],
 							'readonly':[('state', 'in', ('dealt','process','pause','done','cancel'))]}" placeholder="以小时为单位"/>
-							<field name="end_date"
+							<field name="end_date" readonly="1"
 							attrs="{'invisible':[('state', 'in', ('draft','dealt','process','pause','cancel'))]}"/>
-							<field name="cancel_date"
+							<field name="cancel_date" readonly="1"
 							attrs="{'invisible':[('state', 'in', ('draft','dealt','process','pause','done'))]}"/>
 						</group>
 						<group>
@@ -141,5 +141,19 @@
     	action="customize_log_task_action"
     	sequence="10"
     />
+
+	<menuitem
+		id="today_daily_work_menu_action"
+		name="今日日志"
+		parent="customize_log_task_menu_root"
+		sequence="10"
+	/>
+
+	<menuitem
+		id="otherday_daily_work_menu_action"
+		name="自定义时间日志"
+		parent="customize_log_task_menu_root"
+		sequence="12"
+	/>
 
 </odoo>
