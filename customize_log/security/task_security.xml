@@ -5,9 +5,9 @@
         <field name="model_id" ref="model_customize_log_task"/>
         <!--user表示当前登陆的用户对象-->
         <field name="domain_force">['|', '|', '|',
-            ('executor','=',user.name),
+            ('executor','=',user.employee_ids.id),
             ('create_uid','=',user.id),
-            '&amp;', ('receive','=',True), ('task_department', '=', user.employee_id.department_id.name),
+            '&amp;', ('receive','=',True), ('task_department', '=', user.employee_ids.department_id.id),
             '&amp;', ('receive','=',True), ('task_level', '=', 'company')]
         </field>
         <field name="groups" eval="[(4,ref('base.group_user'))]"/>
@@ -17,7 +17,7 @@
     <record id="customize_log_user_rule" model="ir.rule">
         <field name="name">主管可以查看本部门的任务</field>
         <field name="model_id" ref="model_customize_log_task"/>
-        <field name="domain_force">[('task_department','=', user.employee_id.department_id.name)]</field>
+        <field name="domain_force">[('task_department','=', user.employee_ids.department_id.id)]</field>
         <field name="groups" eval="[(4,ref('hr.group_hr_user'))]"/>
         <field name="global" eval="False"/>
     </record>
@@ -41,8 +41,16 @@
     <record id="customize_log_officer_look_information_rule" model="ir.rule">
         <field name="name">员工只可以查看自己的个人信息</field>
         <field name="model_id" ref="hr.model_hr_employee"/>
-        <field name="domain_force">[('name','=',user.name)]</field>
+        <field name="domain_force">[('id','=',user.employee_ids.id)]</field>
         <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+        <field name="global" eval="False"/>
+    </record>
+
+     <record id="customize_log_user_look_information_rule" model="ir.rule">
+        <field name="name">主管可以指派本部门的人员执行任务</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="domain_force">[('department_id.id','=',user.employee_ids.department_id.id)]</field>
+        <field name="groups" eval="[(4,ref('hr.group_hr_user'))]"/>
         <field name="global" eval="False"/>
     </record>
 
@@ -57,7 +65,7 @@
     <record id="customize_log_user_generatedaily_work_rule" model="ir.rule">
         <field name="name">主管可以生成本部门员工的日志</field>
         <field name="model_id" ref="model_res_users"/>
-        <field name="domain_force">[('employee_id.department_id.name','=',user.employee_id.department_id.name)]</field>
+        <field name="domain_force">[('employee_ids.department_id.id','=',user.employee_ids.department_id.id)]</field>
         <field name="groups" eval="[(4,ref('hr.group_hr_user'))]"/>
         <field name="global" eval="False"/>
     </record>

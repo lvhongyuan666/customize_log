@@ -9,7 +9,7 @@
                 <t t-call="web.external_layout">
                     <div class="page">
                         <!--doc.name获取的是res.users对象.name获得的是字段的值-->
-                        <h3 class="text-center">【<span t-esc="doc.time"/>】日工作日志【<span t-esc="doc.name.employee_id.department_id.name"/>】【<span t-esc="doc.name.name"/>】</h3>
+                        <h3 class="text-center">【<span t-esc="doc.time"/>】日工作日志【<span t-esc="doc.name.employee_ids.department_id.name"/>】【<span t-esc="doc.name.name"/>】</h3>
                         <div style="padding: 20px;">
                         <!--获取的是当前用户的任务对象,并判断是否存在-->
                         <t t-if="doc.task">

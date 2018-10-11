@@ -7,14 +7,16 @@
 		<field name="arch" type="xml">
 			<form string="自定义时间生成日志">
 				<group>
-					<field name="name_id"/>
-					<field name="start_time"/>
-					<field name="end_time"/>
+					<group>
+						<field name="name_id" options="{'no_create': True, 'no_open': True}"/>
+						<field name="start_time"/>
+						<field name="end_time"/>
+					</group>
+					<footer>
+						<button string="生成日志" name='customize_generate_daily_work' type="object" class="oe_highlight"/>
+						<button string="取消" class="btn-default" special="cancel"/>
+					</footer>
 				</group>
-				<footer>
-					<button string="生成日志" name='customize_generate_daily_work' type="object" class="oe_highlight"/>
-					<button string="取消" class="btn-default" special="cancel"/>
-				</footer>
 			</form>
 		</field>
 	</record>

@@ -6,7 +6,7 @@
                 <t t-call="web.external_layout">
                     <div class="page">
                         <h3 class="text-center">【<span
-                                t-esc="doc.name.employee_id.department_id.name"/>】【<span t-esc="doc.name.name"/>】【<span t-esc="doc.start_time"/>】至【<span t-esc="doc.end_time"/>】工作日志
+                                t-esc="doc.name.employee_ids.department_id.name"/>】【<span t-esc="doc.name.name"/>】【<span t-esc="doc.start_time"/>】至【<span t-esc="doc.end_time"/>】工作日志
                         </h3>
                         <div style="padding: 20px;">
                             <!--获取的是当前用户的任务对象,并判断是否存在-->

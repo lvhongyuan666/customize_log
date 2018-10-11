@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="customize_log_task_wizard_view_search" model="ir.ui.view">
+		<field name="name">按部门搜索</field>
+		<field name="model">customize_log.task</field>
+		<field name="priority" eval="16"/>
+		<field name="arch" type="xml">
+			<search>
+				<filter string="部门" name="by_department" context="{'group_by': 'task_department'}"/>
+			</search>
+		</field>
+	</record>
+
+	<record id="customize_log_task_wizard_view_tree" model="ir.ui.view">
+		<field name="name">员工任务明细</field>
+		<field name="model">customize_log.task</field>
+		<field name="priority" eval="16"/>
+		<field name="arch" type="xml">
+			<!--已完成状态:黑色, 进行中红色,待处理黄色,已暂停绿色-->
+			<tree string="任务明细" edit="false" create="false"
+			decoration-bf="state == 'done'"
+		    decoration-danger="state == 'process'"
+			decoration-success="state == 'pause'"
+		    decoration-warning="state == 'dealt'"
+			>
+				<field name="user_id"/>
+				<field name="executor"/>
+				<field name="job"/>
+				<field name="start_date"/>
+				<field name="end_date"/>
+				<field name="state"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="customize_log_task_wizard_view_form" model="ir.ui.view">
+		<field name="name">员工任务状态明细</field>
+		<field name="model">customize_log.task_wizard</field>
+		<field name="priority" eval="16"/>
+		<field name="arch" type="xml">
+			<form>
+				<group>
+					<group>
+						<field name="start_date"/>
+						<field name="end_date"/>
+					</group>
+					<footer>
+						<button string="查询" name='customize_generate_task' type="object" class="oe_highlight"/>
+						<button string="取消" class="btn-default" special="cancel"/>
+					</footer>
+				</group>
+			</form>
+		</field>
+	</record>
+
+	<act_window id="customize_log_task_wizard_action"
+				name="员工任务状态明细"
+				src_model="hr.department"
+				res_model="customize_log.task_wizard"
+				view_mode="form"
+				target="new"
+				key2="client_action_multi"/>
+
+    <menuitem
+    	id="customize_log_task_wizard_menu_action"
+    	name="任务明细查询"
+    	parent="customize_log_task_menu_root"
+    	action="customize_log_task_wizard_action"
+    	sequence="20"
+		groups="hr.group_hr_manager"
+    />
+</odoo>
